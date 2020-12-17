@@ -1,32 +1,25 @@
 <template>
-  <div>
-    <textarea ref="textarea"></textarea>
+  <div class="codeMirror-wrapper">
+    <textarea class="codeMirror-container" ref="textarea"></textarea>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import _CodeMirror  from 'codemirror'
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/mode/clike/clike.js'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/cobalt.css'
 
-const CodeMirror = window.CodeMirror || _CodeMirror
-
-@Options({
+export default {
+  name: 'CoderMirror',
   props: {
     msg: String
   },
   data () {
     return {
-      options: {
-        tabSize: 2,
-        theme: 'cobalt',
-        lineNumbers: true,
-        line: true
-      },
+      
       modes: [{
         value: 'css',
         label: 'CSS'
@@ -42,17 +35,27 @@ const CodeMirror = window.CodeMirror || _CodeMirror
       }]
     }
   },
-  mounted () {
-    this.coder = CodeMirror.fromTextArea(this.$refs.textarea, this.options)
-    this.coder.setOption('mode', 'text/x-java')
-  }
-})
+  setup() {
+    
 
-export default class HelloWorld extends Vue {
-  setUp() {
-    const coder = ref(null)
+    let coder = null
+    const CodeMirror = window.CodeMirror || _CodeMirror
+    const options = {
+      tabSize: 2,
+      theme: 'cobalt',
+      lineNumbers: true,
+      line: true
+    }
+    const textarea = ref(null)
+
+    onMounted(() => {
+      coder = CodeMirror.fromTextArea(textarea.value as any, options)
+      coder.setOption('mode', 'text/x-java')
+      coder.setSize('auto', '520px')
+    })
+
     return {
-      coder
+      textarea
     }
   }
 }
@@ -60,5 +63,9 @@ export default class HelloWorld extends Vue {
 </script>
 
 <style lang="less" scoped>
-
+.codeMirror-wrapper {
+  .codeMirror-container {
+    height: 600px;
+  }
+}
 </style>

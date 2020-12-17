@@ -6,13 +6,12 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
 import CodeMirror from '@/component/codeMirror/CodeMirror.vue'
 
-@Options({
+export default {
+  name: 'Home',
   components: {
     CodeMirror
-  },
-})
-export default class Home extends Vue {}
+  }
+}
 </script>
