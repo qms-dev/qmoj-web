@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    
+    <code-mirror></code-mirror>
+    <a-button>2131213</a-button>
   </div>
-  <a-button>2131213</a-button>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import CodeMirror from '@/component/codeMirror/CodeMirror.vue'
 
-@Options({
+export default {
+  name: 'Home',
   components: {
-    
-  },
-})
-export default class Home extends Vue {}
+    CodeMirror
+  }
+}
 </script>
