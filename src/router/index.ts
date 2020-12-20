@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Detail from '../views/Detail/Detail.vue'
+import Problemset from '../views/Problemset/Problemset.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Detail',
     component: Detail
   },
+  {
+    path: '/problemset',
+    name: 'Problemset',
+    component: Problemset
+  }
 ]
 
 const router = createRouter({
