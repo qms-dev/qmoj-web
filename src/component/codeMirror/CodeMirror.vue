@@ -5,9 +5,12 @@
 </template>
 
 <script lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import _CodeMirror  from 'codemirror'
 import 'codemirror/mode/javascript/javascript.js'
+import 'codemirror/mode/go/go.js'
+import 'codemirror/mode/php/php.js'
+import 'codemirror/mode/python/python.js'
 import 'codemirror/mode/clike/clike.js'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/cobalt.css'
@@ -15,30 +18,13 @@ import 'codemirror/theme/cobalt.css'
 export default {
   name: 'CoderMirror',
   props: {
-    msg: String
-  },
-  data () {
-    return {
-      
-      modes: [{
-        value: 'css',
-        label: 'CSS'
-      }, {
-        value: 'javascript',
-        label: 'Javascript'
-      }, {
-        value: 'html',
-        label: 'XML/HTML'
-      }, {
-        value: 'x-java',
-        label: 'Java'
-      }]
+    lang: {
+      type: String,
+      default: ''
     }
   },
-  setup() {
-    
-
-    let coder = null
+  setup(props: any) {
+    let coder: CodeMirror.EditorFromTextArea | null = null
     const CodeMirror = window.CodeMirror || _CodeMirror
     const options = {
       tabSize: 2,
@@ -48,14 +34,27 @@ export default {
     }
     const textarea = ref(null)
 
+    const getCodeText = () => {
+      if (coder !== null) return coder.getValue()
+    }
+
     onMounted(() => {
       coder = CodeMirror.fromTextArea(textarea.value as any, options)
       coder.setOption('mode', 'text/x-java')
       coder.setSize('auto', '520px')
     })
 
+    watch(() => props.lang, (lang) => {
+      if (coder !== null) {
+        console.log(lang)
+        coder.setOption('mode', lang)
+       console.log( coder.getMode())
+      }
+    })
+
     return {
-      textarea
+      textarea,
+      getCodeText
     }
   }
 }

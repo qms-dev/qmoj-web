@@ -9,7 +9,9 @@
               题目描述
             </span>
           </template>
-          <div>111</div>
+          <div>
+            <question-description></question-description>
+          </div>
         </a-tab-pane>
         <a-tab-pane key="2">
           <template #tab>
@@ -30,6 +32,7 @@
 
 <script lang="ts">
 import { ReadOutlined, HistoryOutlined } from '@ant-design/icons-vue'
+import QuestionDescription from './QuestionDescription.vue'
 import AnswerSheet from './AnswerSheet.vue'
 
 export default {
@@ -37,6 +40,7 @@ export default {
   components: {
     ReadOutlined,
     HistoryOutlined,
+    QuestionDescription,
     AnswerSheet
   }
 }
