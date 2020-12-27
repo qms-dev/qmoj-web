@@ -15,8 +15,8 @@ export default [{
 },
 {
   title: "#",
-  dataIndex: "number",
-  key: "number"
+  dataIndex: "id",
+  key: "id"
 },
 {
   title: "题名",
@@ -28,23 +28,30 @@ export default [{
   }
 },
 {
-  title: "题解",
-  dataIndex: "answer",
-  key: "answer"
-},
-{
-  title: "通过率",
-  dataIndex: "passRate",
-  key: "passRate"
-},
-{
   title: "难度",
   dataIndex: "difficulty",
-  key: "difficulty"
+  key: "difficulty",
+  customRender: ({text}: {text: number}): string => {
+    switch (text) {
+      case 0:
+        return 'easy';
+      case 1:
+        return 'medium';
+      default:
+          return 'hard';
+    }
+  }
 },
 {
-  title: "出现频率",
-  dataIndex: "frequency",
-  key: "frequency"
+  title: "分类",
+  dataIndex: "topicTags",
+  key: "topicTags",
+  customRender: ({text}: {text: string[]}): string => {
+    let str = ""
+    text.forEach(item => {
+      str += item+" ";
+    })
+    return str;
+  }
 }
 ]

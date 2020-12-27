@@ -1,5 +1,5 @@
 <template>
-  <a-table :columns="columnsBaseTitle" :data-source="data">
+  <a-table :columns="columnsBaseTitle" :data-source="data" rowKey="questionListBase" :pagination="false">
     <template #name="{text}">
       <a>{{ text }}</a>
     </template>
