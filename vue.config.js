@@ -1,4 +1,16 @@
+const path = require('path');
+
 module.exports = {
+  /**
+     * why do like this can see https://stackoverflow.com/questions/62196921/vue-js-configure-a-custom-alias-using-webpack
+     */
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src/'),
+      }
+    },
+  },
   devServer : {
     proxy:  {
       "/api" : {
