@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import QuestionListBase from './components/question-list-base.vue';
-import { interfaceQuestionList } from './config/problemInterface';
+import { interfaceQuestionList } from '@/@types/Problemset/problemInterface';
 import { getProblemListRequest } from '@/api/problemsetRequest'
 
 import { reactive, ref } from 'vue';
@@ -33,18 +33,14 @@ export default {
     
     const pageSizeOptions = ['10', '20', '30', '40', '50'];
 
-    const data: interfaceQuestionList[] = reactive([
-      {
-        accepted: true,
-        difficulty: 0,
-        id: 1,
-        title: "两数之和",
-        topicTags: ["数组", "哈希表"],
-      }
-    ])
+    const data: interfaceQuestionList[] = reactive([])
 
     const sendProblemList = (page: number, size: number) => {
-      getProblemListRequest(page, size).then(({pageSize: remoteSize, total: remoteTotal, pages: remotePages, list: remoteList}) => {
+      /**
+       * 这个res的类型绕来绕去给绕晕了
+       */
+      getProblemListRequest(page, size).then((res: any) => {
+        const { pageSize: remoteSize, total: remoteTotal, pages: remotePages, list: remoteList } = res;
         total.value = remoteTotal;
         pageSize.value = remoteSize;
         current.value = remotePages;

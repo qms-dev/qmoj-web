@@ -1,0 +1,30 @@
+{
+  "status": 0,
+  "msg": "",
+  "data": {
+      "pageNum": 1,
+      "pageSize": 2,
+      "total": 12,
+      "pages": 3,
+      "list": [
+          {
+              "id": 1,
+              "title": "两数之和",
+              "difficulty": 0,
+              "topicTags": [
+                  "数组",
+                  "哈希表"
+              ]
+          },
+          {
+              "id": 2,
+              "title": "三数之和",
+              "difficulty": 1,
+              "topicTags": [
+                  "数组",
+                  "哈希表"
+              ]
+          }
+      ]
+  }
+}

@@ -11,6 +11,7 @@ module.exports = {
       }
     },
   },
+  assetsDir: "./static",  // 将静态资源文件放置在static文件夹中
   devServer : {
     proxy:  {
       "/api" : {
@@ -20,6 +21,12 @@ module.exports = {
         pathRewrite: {
           "^/api " :  "" // 若请求的路径在目标url下但不在/api 下，则将其转换成空
         }    
+      },
+      "/mock": {
+        target: "http://127.0.0.1:8080",
+        pathRewrite: {
+          "^/mock " :  "./static/mock" // 将资源放置在public/mock下
+        }
       }
     }
   },
