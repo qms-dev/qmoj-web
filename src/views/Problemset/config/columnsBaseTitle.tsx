@@ -1,15 +1,15 @@
 
 export default [{
-  title: "",
+  title: "是否做过", // 暂时这个功能没实现
   dataIndex: "accepted",
   key: "accepted",
   customRender: ({text}: {text: boolean}) => {
     if(text === true){
-      return "√"
+      return "做过通过了"
     }else if (text === false) {
-      return "×"
+      return "做过没通过"
     } else {
-      return "?"
+      return "NO"
     }
   }
 },
@@ -23,14 +23,15 @@ export default [{
   dataIndex: "title",
   key: "title",
   ellipsis: true,
-  customRender: ({text}: {text: string}): JSX.Element => {
-    return (<a href="javascript:;">{text}</a>)
+  customRender: ({text, record}: {text: string; record: {id: number}}): JSX.Element => {
+    const src: string = "/detail?id="+ record.id;
+    return (<a href={src}>{text}</a>)
   }
 },
 {
   title: "难度",
-  dataIndex: "difficulty",
-  key: "difficulty",
+  dataIndex: "difficultyCode",
+  key: "difficultyCode",
   customRender: ({text}: {text: number}): string => {
     switch (text) {
       case 0:
@@ -42,16 +43,16 @@ export default [{
     }
   }
 },
-{
-  title: "分类",
-  dataIndex: "topicTags",
-  key: "topicTags",
-  customRender: ({text}: {text: string[]}): string => {
-    let str = ""
-    text.forEach(item => {
-      str += item+" ";
-    })
-    return str;
-  }
-}
+// {
+//   title: "分类",
+//   dataIndex: "topicTags",
+//   key: "topicTags",
+//   customRender: ({text}: {text: string[]}): string => {
+//     let str = ""
+//     text.forEach(item => {
+//       str += item+" ";
+//     })
+//     return str;
+//   }
+// }
 ]
