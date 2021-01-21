@@ -40,12 +40,10 @@ export default {
        * 这个res的类型绕来绕去给绕晕了
        */
       getProblemListRequest(page, size).then((res: any) => {
-        console.log('res: ', res)
         const { size: remoteSize, total: remoteTotal, current: remotePages, records: remoteList } = res;
         total.value = remoteTotal;
         pageSize.value = remoteSize;
         current.value = remotePages;
-        console.log(' current.value : ',  current.value )
 
         data.splice(0,data.length, ...remoteList);
       })
