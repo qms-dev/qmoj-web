@@ -13,12 +13,20 @@ import 'codemirror/mode/php/php.js'
 import 'codemirror/mode/python/python.js'
 import 'codemirror/mode/clike/clike.js'
 import 'codemirror/lib/codemirror.css'
+
+// 主题样式
 import 'codemirror/theme/cobalt.css'
+import 'codemirror/theme/blackboard.css'
+import 'codemirror/theme/eclipse.css'
 
 export default {
   name: 'CoderMirror',
   props: {
     lang: {
+      type: String,
+      default: ''
+    },
+    theme: {
       type: String,
       default: ''
     }
@@ -28,7 +36,7 @@ export default {
     const CodeMirror = window.CodeMirror || _CodeMirror
     const options = {
       tabSize: 2,
-      theme: 'cobalt',
+      theme: 'blackboard',
       lineNumbers: true,
       line: true
     }
@@ -46,9 +54,15 @@ export default {
 
     watch(() => props.lang, (lang) => {
       if (coder !== null) {
-        console.log(lang)
         coder.setOption('mode', lang)
-       console.log( coder.getMode())
+      }
+    })
+
+    watch(() => props.theme, (theme) => {
+      console.log(theme)
+      if (coder !== null) {
+        
+        coder.setOption('theme', theme)
       }
     })
 

@@ -12,7 +12,7 @@ export default {
     const questionHTML = ref('')
 
     onMounted(() => {
-      axios.post('api/questions?id=1').then(res => {
+      axios.post('/api/questions?id=1').then(res => {
         const data = res.data.data
         if (data) {
           questionHTML.value = data.content.replace(/\\n/g, '\n')

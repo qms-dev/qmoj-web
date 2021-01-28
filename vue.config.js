@@ -12,11 +12,12 @@ module.exports = {
     },
   },
   assetsDir: "./static",  // 将静态资源文件放置在static文件夹中
+  publicPath: process.env.NODE_ENV === 'production'? '/qmojweb': '/qmojweb/',
   devServer : {
     proxy:  {
-      // 已更新URL，原本的target: "http://81.70.162.122:8080",
+      // cjm 服务器地址：http://193.112.125.76:8989   并且需要/api
       "/api" : {
-        target: "http://193.112.125.76:8989", // 需要跨域的目标url
+        target: "http://81.70.162.122:8888", // 需要跨域的目标url
         changeOrigin: true, // 将基于名称的虚拟托管网站的选项
         ws:  true,
         pathRewrite: {
